@@ -400,33 +400,6 @@ else
 	exit_with_failure "Could not download UnixBench '$MY_UNIXBENCH_DOWNLOAD_URL'"
 fi
 
-# Download Geekbench 5
-echo "    > Download Geekbench 5"
-if curl -fsL "$MY_GEEKBENCH_DOWNLOAD_URL" -o "$MY_DIR/geekbench.tar.gz"; then
-	if tar xvfz "$MY_DIR/geekbench.tar.gz" -C "$MY_DIR" --strip-components=1 > /dev/null 2>&1; then
-		if [[ -x "$MY_DIR/geekbench5" ]]; then
-			echo "        > Geekbench successfully downloaded"
-		else
-			exit_with_failure "Could not find '$MY_DIR/geekbench5'"
-		fi
-	else
-		exit_with_failure "Could not unpack '$MY_DIR/geekbench.tar.gz'"
-	fi
-else
-	exit_with_failure "Could not download Geekbench '$MY_GEEKBENCH_DOWNLOAD_URL'"
-fi
-
-# Unlock Geekbench 5
-if [[ $MY_GEEKBENCH_EMAIL && $MY_GEEKBENCH_KEY ]]; then
-	if "$MY_DIR/geekbench5" --unlock "$MY_GEEKBENCH_EMAIL" "$MY_GEEKBENCH_KEY" > /dev/null 2>&1; then
-		echo "        > Geekbench successfully unlocked"
-	else
-		exit_with_failure "Could not unlock Geekbench"
-	fi
-else
-	echo "        > Geekbench is in tryout mode"
-fi
-
 #####################################################################
 # Let's start
 #####################################################################
@@ -515,12 +488,12 @@ download_benchmark 'Cachefly' 'http://cachefly.cachefly.net/100mb.test'
 #download_benchmark 'Linode, London, UK' 'http://speedtest.london.linode.com/100MB-london.bin'
 #download_benchmark 'OVH, Paris, France' 'http://proof.ovh.net/files/100Mio.dat'
 #download_benchmark 'SmartDC, Rotterdam, Netherlands' 'http://mirror.i3d.net/100mb.bin'
-download_benchmark 'Hetzner, Nuernberg, Germany' 'http://speed.hetzner.de/100MB.iso'
+#download_benchmark 'Hetzner, Nuernberg, Germany' 'http://speed.hetzner.de/100MB.iso'
 #download_benchmark 'iiNet, Perth, WA, Australia' 'http://ftp.iinet.net.au/test100MB.dat'
 #download_benchmark 'Leaseweb, Haarlem, NL' 'http://mirror.nl.leaseweb.net/speedtest/100mb.bin'
 #download_benchmark 'Leaseweb, Manassas, VA, USA' 'http://mirror.us.leaseweb.net/speedtest/100mb.bin'
 #download_benchmark 'Softlayer, Singapore' 'http://speedtest.sng01.softlayer.com/downloads/test100.zip'
-#download_benchmark 'Softlayer, Seattle, WA, USA' 'http://speedtest.sea01.softlayer.com/downloads/test100.zip'
+download_benchmark 'Softlayer, Seattle, WA, USA' 'http://speedtest.sea01.softlayer.com/downloads/test100.zip'
 #download_benchmark 'Softlayer, San Jose, CA, USA' 'http://speedtest.sjc01.softlayer.com/downloads/test100.zip'
 #download_benchmark 'Softlayer, Washington, DC, USA' 'http://speedtest.wdc01.softlayer.com/downloads/test100.zip'
 
@@ -640,25 +613,6 @@ echo_title "UnixBench"
 echo_code start
 perl "$MY_DIR/UnixBench/Run" -c "1" -c "$MY_CPU_COUNT" >> "$MY_OUTPUT" 2>&1
 echo_code end
-
-
-#####################################################################
-# Run Geekbench 5
-#####################################################################
-
-echo_line
-echo "Now let's run Geekbench 5. This takes a little longer."
-echo_line
-
-echo_title "Geekbench 5"
-echo_code start
-if [[ $MY_GEEKBENCH_NO_UPLOAD ]]; then
-	"$MY_DIR/geekbench5" --no-upload >> "$MY_OUTPUT" 2>&1
-else
-	"$MY_DIR/geekbench5" --upload >> "$MY_OUTPUT" 2>&1
-fi
-echo_code end
-
 
 #####################################################################
 # Get uptime and load average
