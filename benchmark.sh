@@ -482,21 +482,7 @@ traceroute_benchmark "hetzner.de"
 traceroute_benchmark "ftp.hostserver.de"
 
 download_benchmark 'Cachefly' 'http://cachefly.cachefly.net/100mb.test'
-#download_benchmark 'Linode, Atlanta, GA, USA' 'http://speedtest.atlanta.linode.com/100MB-atlanta.bin'
-#download_benchmark 'Linode, Dallas, TX, USA' 'http://speedtest.dallas.linode.com/100MB-dallas.bin'
-#download_benchmark 'Linode, Tokyo, JP' 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin'
-#download_benchmark 'Linode, London, UK' 'http://speedtest.london.linode.com/100MB-london.bin'
-#download_benchmark 'OVH, Paris, France' 'http://proof.ovh.net/files/100Mio.dat'
-#download_benchmark 'SmartDC, Rotterdam, Netherlands' 'http://mirror.i3d.net/100mb.bin'
-#download_benchmark 'Hetzner, Nuernberg, Germany' 'http://speed.hetzner.de/100MB.iso'
-#download_benchmark 'iiNet, Perth, WA, Australia' 'http://ftp.iinet.net.au/test100MB.dat'
-#download_benchmark 'Leaseweb, Haarlem, NL' 'http://mirror.nl.leaseweb.net/speedtest/100mb.bin'
-#download_benchmark 'Leaseweb, Manassas, VA, USA' 'http://mirror.us.leaseweb.net/speedtest/100mb.bin'
-#download_benchmark 'Softlayer, Singapore' 'http://speedtest.sng01.softlayer.com/downloads/test100.zip'
-download_benchmark 'Softlayer, Seattle, WA, USA' 'http://speedtest.sea01.softlayer.com/downloads/test100.zip'
-#download_benchmark 'Softlayer, San Jose, CA, USA' 'http://speedtest.sjc01.softlayer.com/downloads/test100.zip'
-#download_benchmark 'Softlayer, Washington, DC, USA' 'http://speedtest.wdc01.softlayer.com/downloads/test100.zip'
-
+download_benchmark 'Hetzner, Nuernberg, Germany' 'http://speed.hetzner.de/100MB.iso'
 
 #####################################################################
 # Run I/O benchmarks
